@@ -124,8 +124,9 @@ class GlobalBuffer:
             for idx, global_idx, local_idx in zip(idxes.tolist(), global_idxes.tolist(), local_idxes.tolist()):
                 
                 assert local_idx < self.size_buf[global_idx], 'index is {} but size is {}'.format(local_idx, self.size_buf[global_idx])
-
+                # steps代表n-TD中的步数，考虑多少个时间步来计算td-error
                 steps = min(configs.forward_steps, (self.size_buf[global_idx].item()-local_idx))
+                # 历史序列的长度
                 seq_len = min(local_idx+1, configs.seq_len)
 
                 if local_idx < configs.seq_len-1:
