@@ -49,7 +49,7 @@ class GlobalBuffer:
 
     def __len__(self):
         return self.size
-
+    # 创建新的后台线程，单独执行self.prepare_data
     def run(self):
         self.background_thread = threading.Thread(target=self.prepare_data, daemon=True)
         self.background_thread.start()
