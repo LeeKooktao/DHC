@@ -37,7 +37,7 @@ class GlobalBuffer:
         self.stat_dict = {init_env_settings:[]}
         self.lock = threading.Lock()
         self.env_settings_set = ray.put([init_env_settings])
-
+        # 一般观测相比于动作多1
         self.obs_buf = np.zeros(((local_buffer_capacity+1)*episode_capacity, configs.max_num_agents, *configs.obs_shape), dtype=np.bool)
         self.act_buf = np.zeros((local_buffer_capacity*episode_capacity), dtype=np.uint8)
         self.rew_buf = np.zeros((local_buffer_capacity*episode_capacity), dtype=np.float16)
