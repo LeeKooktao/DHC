@@ -77,6 +77,7 @@ class GlobalBuffer:
         '''
         data: actor_id 0, num_agents 1, map_len 2, obs_buf 3, act_buf 4, rew_buf 5, hid_buf 6, td_errors 7, done 8, size 9, comm_mask 10
         '''
+        # 限制记录不同智能体配置的数量，有助于内存的管理
         if data[0] >= 12:
             stat_key = (data[1], data[2])
 
